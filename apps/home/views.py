@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 
-# Create your views here.
+def index(request):
+        
+    return HttpResponse("hello")
