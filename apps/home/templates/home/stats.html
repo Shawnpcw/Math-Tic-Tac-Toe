@@ -11,7 +11,7 @@
     <title>Math Tic-Tac-Toe</title>
   </head>
   <body style="background: linear-gradient(320deg,rgb(57, 81, 104), rgb(128, 238, 255) 82%); height: 1000px;">
-        <div class="container">
+        <div class="container-fluid p-5">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5" style="background: #5433FF;  /* fallback for old browsers */
             background: -webkit-linear-gradient(to bottom, #A5FECB, #20BDFF, rgba(87, 56, 243, 0.726));  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to top, #A5FECB, #20BDFF, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -40,41 +40,24 @@
 
                 </div>
             </nav>
-            <div class="row my-5">
-                <div class="col-md-12 text-center ">
-
-                    <h1 class="mt-5">Hello, {{username}}!</h1>
+            <div class="row  mt-5">
+                <div class="col-md-3"><h2>Username:  </h2></div>
+                <div class="col-md-9">
+                    <h2>{{userinfo.username}}</h2>
                 </div>
             </div>
             <div class="row  mt-5">
-                <div class="col  text-center">
-                    <h2>Play a Game!</h2>
+                <div class="col-md-3"><h2>Games Played: </h2></div>
+                <div class="col-md-9">
+                    <h2>{{userinfo.gamesPlayed}}</h2>
                 </div>
             </div>
             <div class="row">
-                
-                <div class="col text-center">
-                    <a href="#" class="h4"><u> Against a Computer Opponent</u></a>
+                <div class="col-md-3"><h2>Games Won: </h2></div>
+                <div class="col-md-9">
+                    <h2>{{userinfo.gamesWon}}</h2>
                 </div>
             </div>
-            <div class="row">
-                
-                <div class="col  text-center">
-                    <a href="#" class="h4"><u> Against a Online Opponent</u></a>
-                </div>
-            </div>
-            <div class="row  mt-5">
-                
-                <div class="col text-center">
-                    <h2>Check Your Stats!</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <a href="{% url 'home:stats' %}" class="h4 "><u>Stats!</u></a>
-                </div>
-            </div>
-            
 
         </div>
 
