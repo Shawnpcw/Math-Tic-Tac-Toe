@@ -20,7 +20,7 @@ def create_user(request):
         
     else:
         request.session['user_id'] = response['user_id']      
-        return redirect('home:PLACEHOLDER')     
+        return redirect('home:index')     
 def login_user(request):
     response = User.objects.login_validator(request.POST)
     if 'errors' in response:
@@ -29,7 +29,7 @@ def login_user(request):
         return redirect('login_reg:index')
     else:
         request.session['user_id'] = response['user_id']      
-        return redirect('home:PLACEHOLDER')  
+        return redirect('home:index')  
 def logout(request):
     del request.session['user_id']
     

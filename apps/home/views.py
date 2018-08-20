@@ -3,4 +3,4 @@ from django.contrib import messages
 
 def index(request):
         
-    return HttpResponse("hello")
+    return render(request, 'home/home.html')
