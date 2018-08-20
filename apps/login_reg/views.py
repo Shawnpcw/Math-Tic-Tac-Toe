@@ -3,6 +3,7 @@ from apps.login_reg.models import *
 from django.contrib import messages
 
 def index(request):
+
     
     if 'first_name' not in request.session:
         request.session['first_name'] = ''
@@ -38,3 +39,4 @@ def logout(request):
     del request.session['user_id']
     
     return redirect('login_reg:index')
+
