@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from apps.login_reg.models import *
 from django.contrib import messages
 
