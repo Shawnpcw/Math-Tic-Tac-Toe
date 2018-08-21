@@ -1,0 +1,138 @@
+<html>
+    <head>
+       <title>Login</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <style>
+        body{
+            margin: auto;
+            padding: auto;
+            background: linear-gradient(320deg,#D6A4A4, #DAE2F8 82%);
+            width: 100%;
+            height: 100%;
+            margin: 3%;
+
+
+        }
+       #container{
+        width: 900px;
+        height:700px;
+        margin-left:15%;
+        border-radius: 15px;
+        background: linear-gradient(-180deg, white,ghostwhite);
+        opacity: .9;   
+        box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+
+       }
+       .draw{
+        position: absolute;
+    margin-left: 0%;
+    margin-top: 0%;
+    padding-left: 4%;
+    padding-top: 8%;
+    width: 32%;
+    height: 41%;
+    font-size: 575%;
+    text-shadow: 0 0 11px white;
+       }
+       h2{
+           text-align: center;
+           font-size: 235%;
+    
+            text-shadow: 2px 2px 4px #D6A4A4;
+       }
+       h1{
+            text-shadow: 2px 2px 4px white;
+           margin-left:15%;
+           
+       }
+
+        input{
+            margin-left: 40%;
+        width: 22%;
+        height: 8%;
+        text-align: center;
+        font-size: 205%;
+        border-radius: 10px;
+        }
+
+        #winningStatement{
+            position: absolute;
+    margin-left: 0%;
+    margin-top: 0%;
+    padding-left: 0%;
+    padding-top: 204px;
+    width: 475px;
+
+    font-size: 575%;
+            
+        }
+        table{
+        min-width:700px;
+
+        margin-bottom: 10px;
+        }
+        table, th, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        }
+        th{
+            padding:10px;
+            background: linear-gradient( whitesmoke 5%,#f4f0f0 );
+        }
+        td{
+            background-color: #f4f0f0;
+            padding:5px;
+        }
+        
+        .sub{
+            
+            color:black;
+            display:inline-block;
+            width: 75%;
+            height:75%;
+            vertical-align: top; 
+            margin: 50px 0px 0px 90px;
+        }
+
+
+
+       </style>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script type="text/javascript">
+           $(document).ready(function(){
+     
+        })
+        </script>
+
+    </head>
+    <body>
+        
+            <h1>Welcome {{request.session.username}}</h1>
+
+                <div id = 'container'>
+
+                    <div class = 'sub'>
+                            <h2>Users Waiting for a match</h2>
+                            <table>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Game Difficulty</th>
+                                    <th>User's Winning Percentage</th>
+                                    <th>Do you want to Join?</th>
+                                </tr>
+                                {%for game in myGames%}
+                                <tr>
+                                    <td>{{game.creator.username}}</td>
+                                    <td>{{game.diffiliculty}}</td>
+                                   <td> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}</td>
+                                    <td><a href ="">Join?</a></td>
+                                </tr>
+                                   {%endfor%}
+
+                            </table>
+                    </div>
+                </div>
+                  
+              </body>
+          </html>

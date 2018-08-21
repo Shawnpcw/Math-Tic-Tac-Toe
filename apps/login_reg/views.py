@@ -20,7 +20,8 @@ def create_user(request):
         return redirect('login_reg:index')
         
     else:
-        request.session['user_id'] = response['user_id']      
+        request.session['user_id'] = response['user_id']
+        request.session['username'] = request.POST['username']      
         return redirect('home:index')     
 def login_user(request):
     response = User.objects.login_validator(request.POST)
@@ -29,7 +30,8 @@ def login_user(request):
             messages.error(request,error)
         return redirect('login_reg:index')
     else:
-        request.session['user_id'] = response['user_id']      
+        request.session['user_id'] = response['user_id']     
+        request.session['username'] = request.POST['username']
         return redirect('home:index')  
 def logout(request):
     del request.session['user_id']
