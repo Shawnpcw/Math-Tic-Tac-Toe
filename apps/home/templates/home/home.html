@@ -27,7 +27,7 @@
                       <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Online Match</a>
+                        <a class="nav-link" href="{% url 'home:start_game' %}">Online Match</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Computer Match</a>
@@ -60,7 +60,7 @@
             <div class="row">
                 
                 <div class="col  text-center">
-                    <a href="#" class="h4"><u> Against a Online Opponent</u></a>
+                    <a href="{% url 'home:start_game' %}" class="h4"><u> Against a Online Opponent</u></a>
                 </div>
             </div>
             <div class="row  mt-5">

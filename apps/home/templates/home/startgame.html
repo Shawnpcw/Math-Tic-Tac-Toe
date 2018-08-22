@@ -11,7 +11,7 @@
     <title>Math Tic-Tac-Toe</title>
   </head>
   <body style="background: linear-gradient(320deg,rgb(57, 81, 104), rgb(128, 238, 255) 82%); height: 1000px;">
-        <div class="container-fluid p-5">
+        <div class="container mt-5 pt-5">
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5" style="background: #5433FF;  /* fallback for old browsers */
             background: -webkit-linear-gradient(to bottom, #A5FECB, #20BDFF, rgba(87, 56, 243, 0.726));  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to top, #A5FECB, #20BDFF, #5433FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -27,7 +27,7 @@
                       <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:start_game' %}">Online Match</a>
+                        <a class="nav-link" href="#">Online Match</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Computer Match</a>
@@ -40,19 +40,57 @@
 
                 </div>
             </nav>
-            <div class="row  mt-5">
-                <div class="col text-center"><h2>Username: {{userinfo.username}}  </h2></div>
-                
+            <div class="row mt-5 justify-content-md-center">
+                <div class="col">
+                    <h2>Your game</h2>
+                </div>
             </div>
-            <div class="row  mt-5">
-                <div class="col text-center"><h2>Games Played: {{userinfo.gamesPlayed}}</h2></div>
-                
+            <div class="row  justify-content-md-center">
+                <div class="col my-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="h5">Game owner</td>
+                                <td class="h5">Created At</td>
+                                <td class="h5">Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Game owner</td>
+                                <td>Created At</td>
+                                <td>Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="row">
-                <div class="col text-center"><h2>Games Won: {{userinfo.gamesWon}}</h2></div>
-                
+            <div class="row justify-content-md-center">
+                <div class="col">
+                    <h2>All Games</h2>
+                </div>
             </div>
-
+            <div class="row mt-5 justify-content-md-center">
+                <div class="col-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="h5">Game owner</td>
+                                <td class="h5">Created At</td>
+                                <td class="h5">Join Game</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Game owner</td>
+                                <td>Created At</td>
+                                <td>Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a href="#"></a>
         </div>
 
 

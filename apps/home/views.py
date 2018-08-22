@@ -17,3 +17,7 @@ def stats(request):
 
     
     return render(request, 'home/stats.html', {'userinfo':userinfo})
+def start_game(request):
+
+
+    return render(request, 'home/startgame.html')
