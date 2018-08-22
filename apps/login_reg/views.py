@@ -1,8 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from apps.login_reg.models import *
 from django.contrib import messages
 
 def index(request):
+
     
     if 'username' not in request.session:
         request.session['username'] = ''     
@@ -19,7 +20,8 @@ def create_user(request):
         return redirect('login_reg:index')
         
     else:
-        request.session['user_id'] = response['user_id']      
+        request.session['user_id'] = response['user_id']
+        request.session['username'] = request.POST['username']      
         return redirect('home:index')     
 def login_user(request):
     response = User.objects.login_validator(request.POST)
@@ -28,9 +30,11 @@ def login_user(request):
             messages.error(request,error)
         return redirect('login_reg:index')
     else:
-        request.session['user_id'] = response['user_id']      
+        request.session['user_id'] = response['user_id']     
+        request.session['username'] = request.POST['username']
         return redirect('home:index')  
 def logout(request):
     del request.session['user_id']
     
     return redirect('login_reg:index')
+
