@@ -12,5 +12,6 @@ class openMatches(models.Model):
     creator = models.ForeignKey(User, related_name = "user_id", on_delete=models.CASCADE)
     Attendee = models.ManyToManyField(User, related_name = "game_id")
     diffiliculty = models.IntegerField(default = 1)
+    board = models.CharField(max_length = 2000, default ="")
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
