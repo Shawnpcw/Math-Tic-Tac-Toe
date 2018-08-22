@@ -32,14 +32,20 @@ def createMatch(request):
 
 def add(request):
     def equation():
+        signs = ['+','-','x','/']
+        sign = randint(0,int(request.POST['Difficulty'])-1)
         num1 = randint(1,10)
         num2 = randint(1,10)
         if(num2>num1):
             temp = num1
             num1 = num2
             num2 = num1
-        signs = ['+','-','x','/']
-        sign = randint(0,int(request.POST['Difficulty'])-1)
+        if (sign ==3):
+            if(num2 ==0):
+                num2 =1
+            num1 = num2 * randint(1,10)
+        
+        
 
         eq = str(num1) +' '+str(signs[sign])+' '+ str(num2)
         if (sign ==1):
@@ -49,7 +55,7 @@ def add(request):
         elif (sign == 2):
             ans = num1 * num2
         elif (sign == 3):
-            ans = round(num1/num2,2)
+            ans = int(num1/num2)
         square = {
                     'equation': eq,
                     'answer' : ans,

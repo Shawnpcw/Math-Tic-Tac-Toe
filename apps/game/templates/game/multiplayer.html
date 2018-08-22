@@ -59,11 +59,12 @@
 
         #winningStatement{
             position: absolute;
-    margin-left: 0%;
+    margin-left: 100px;
     margin-top: 0%;
     padding-left: 0%;
-    padding-top: 204px;
+    padding-top: 175px;
     width: 475px;
+    font-size: 575%;
 
     font-size: 575%;
             
@@ -144,7 +145,7 @@
        <script type="text/javascript">
            $(document).ready(function(){
             
-            $('body').css('background','linear-gradient(320deg,#240b36, #c31432 82%)')
+           
             var winningFlag = 0;
                var board =[[0,0,0],
                [0,0,0],
@@ -261,15 +262,15 @@
                                             winningFlag = 2;
                                         }
                                 if(winningFlag ==1){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if(winningFlag ==2){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if (turns ==9) {
-                                    $('table').prepend('<h1 class = "draw">Draw, No Winner</h1>')
+                                    $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
                             }

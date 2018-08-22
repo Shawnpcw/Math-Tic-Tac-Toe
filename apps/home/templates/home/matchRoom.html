@@ -101,6 +101,20 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        <script type="text/javascript">
            $(document).ready(function(){
+            $('td').hover(function(){
+                     
+                     $(this).css('background-color','#bdc3c7')
+                     
+                 
+                 
+             }, function(){
+               
+                 
+                     
+                 $(this).css('background-color','whitesmoke')
+                 
+             }
+             );
      
         })
         </script>
@@ -119,14 +133,14 @@
                                     <th>Username</th>
                                     <th>Game Difficulty</th>
                                     <th>User's Winning Percentage</th>
-                                    <th>Do you want to Join?</th>
+                                   
                                 </tr>
                                 {%for game in myGames%}
-                                <tr>
-                                    <td>{{game.creator.username}}</td>
-                                    <td>{{game.diffiliculty}}</td>
-                                   <td> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}</td>
-                                    <td><a href ="gameplayer2/{{game.id}}">Join?</a></td>
+                                <tr class = {{game.id}}>
+                                    <td class = {{game.id}}>{{game.creator.username}}<a href ="gameplayer1/{{game.id}}"></a></td>
+                                    <td class = {{game.id}}>{{game.diffiliculty}}<a href ="gameplayer1/{{game.id}}"></a></td>
+                                   <td class = {{game.id}}> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}<a href ="gameplayer1/{{game.id}}"></a></td>
+                                   
                                 </tr>
                                    {%endfor%}
 
