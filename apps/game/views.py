@@ -15,7 +15,8 @@ def multiplayer(request, num):
     request.session['board'] = board
     request.session['gameId'] = num
     scoreboard = b.scoreboard
-    return render(request,'game/multiplayer.html',{'board':board, 'scoreboard': scoreboard})
+    playersTurn = b.playersTurn
+    return render(request,'game/multiplayer.html',{'board':board, 'scoreboard': scoreboard,'playersTurn':playersTurn})
 
 def player2(request,num):
     
