@@ -154,7 +154,6 @@
                                     <th>Username</th>
                                     <th>Game Difficulty</th>
                                     <th>User's Winning Percentage</th>
-<<<<<<< HEAD
                                     {%if otherUser == 1%}
                                     <th>Start Game!</th>
                                     {%endif%}
@@ -183,16 +182,6 @@
                                     <th>User's Winning Percentage</th>
                                     <th></th>
                                    
-=======
-                                   <th>Join</th>
-                                </tr>
-                                {%for game in myGames%}
-                                <tr class = {{game.id}}>
-                                    <td class = {{game.id}}>{{game.creator.username}}<a href ="gameplayer1/{{game.id}}"></a></td>
-                                    <td class = {{game.id}}>{{game.diffiliculty}}<a href ="gameplayer1/{{game.id}}"></a></td>
-                                   <td class = {{game.id}}> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}</td>
-                                <td><a href ="gameplayer2/{{game.id}}">Join?</a></td>
->>>>>>> master
                                 </tr>
                                 {%if openGames%}
                                 {%for game in openGames%}
