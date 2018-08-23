@@ -15,6 +15,9 @@ def multiplayer(request, num):
 
 def player2(request,num):
     board = openMatches.objects.get(id = num).board
+    b = openMatches.objects.get(id = num)
+    b.attendee = User.objects.get(id = request.session['user_id'])
+    b.save()
     request.session['board'] = board
     return render(request,'game/player2.html',{'board':board})
 

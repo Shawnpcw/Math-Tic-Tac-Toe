@@ -2,15 +2,17 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from apps.login_reg.models import *
-from .models import *
+from apps.home.models import *
+
 from random import randint
 
 def index(request):
     username = User.objects.get(id =request.session['user_id']).username
-
+    print(username)
     
     return render(request, 'home/home.html', {'username':username})
 def stats(request):
+    
     userinfo={
         'username' : User.objects.get(id =request.session['user_id']).username,
         'gamesWon' : User.objects.get(id =request.session['user_id']).gamesWon,
@@ -19,18 +21,22 @@ def stats(request):
     return render(request, 'home/stats.html', {'userinfo':userinfo})
 
 def matchRoom(request):
-    opponentInfo = User.objects.all()
-    gameInfo = Game.objects.all()
+    otherUser = 0
+    myGames = openMatches.objects.filter(creator = User.objects.get(id = request.session['user_id']))
     
-    myGames = openMatches.objects.all()
     openGames = openMatches.objects.exclude(creator = User.objects.get(id = request.session['user_id']))
-    return render (request, 'home/matchRoom.html', {'myGames': myGames, 'openGames': openGames})
+    if myGames:
+        if myGames[0].attendee_id !=1:
+            print('it changed!')
+            otherUser = 1
+    return render (request, 'home/matchRoom.html', {'myGames': myGames, 'openGames': openGames, 'otherUser':otherUser})
 
 def createMatch(request):
 
     return render(request, 'home/create.html')
 
 def add(request):
+    
     def equation():
         signs = ['+','-','x','/']
         sign = randint(0,int(request.POST['Difficulty'])-1)
@@ -70,8 +76,17 @@ def add(request):
         stri+='</tr>'
     
 
-    
-    openMatches.objects.create(board = stri, diffiliculty = request.POST['Difficulty'], creator = User.objects.get(id= request.session['user_id']))
-    
-    return redirect('/homematchRoom')
+    if openMatches.objects.filter(creator = request.session['user_id']).exists():
+        b=openMatches.objects.get(creator = request.session['user_id'])
+        b.difficulty = request.POST['Difficulty']
+        b.save()
+    else:
+        i = openMatches.objects.create(board = stri, difficulty = request.POST['Difficulty'], creator = User.objects.get(id= request.session['user_id']), attendee = User.objects.get(id=1))
+        
+    return redirect('home:matchRoom')
+
+def logout(request):
+    request.session.clear()
+
+    return redirect('login_reg:index')
 
