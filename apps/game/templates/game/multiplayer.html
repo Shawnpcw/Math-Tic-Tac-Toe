@@ -91,7 +91,7 @@
         .xCell{
             margin:0px;
             padding:0px;
-            font-size:45px;
+            font-size: 84px;
         }
         .sub{
             
@@ -110,8 +110,8 @@
             box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
             background-color:whitesmoke;
             margin:1px;
-            min-width: 100px;
-            min-height: 100px;
+            width: 100px;
+            height: 100px;
             border-radius:18px;
             }
 
@@ -120,18 +120,56 @@
        <script type="text/javascript">
            $(document).ready(function(){
             
-           
+
             var winningFlag = 0;
-               var board =[[0,0,0],
-               [0,0,0],
-               [0,0,0]];
+            var board ="{{scoreboard}}".split(",")
             $('#inputanswer').hide(); 
            
             var turns = 0;
             var tdselected = [];
             var backgroundColor = "";
             $('table').html("{{board | safe}}");
-            
+            for(var i =0; i<3;i++){
+                                    if(board[i] == 'x' && board[i+1] == 'x' && board[i+2]=='x'){
+                                        winningFlag = 1;
+                                    }
+                                    if(board[i] == 'o' && board[i+1] == 'o' && board[i+2]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    if(board[i] == 'x' && board[i+3] == 'x' && board[i+6]=='x'){
+                                        winningFlag = 1;
+                                    }
+                                    if(board[i] == 'o' && board[i+3] == 'o' && board[i+6]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    
+                                }
+                                    if(board[2] == 'x' && board[4] == 'x' && board[6]=='x'){
+                                        winningFlag = 1;
+                                    }
+                                    if(board[2] == 'o' && board[4] == 'o' && board[6]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    if(board[0] == 'x' && board[4] == 'x' && board[8]=='x'){
+                                        winningFlag = 1;
+                                    }
+                                    if(board[0] == 'o' && board[4] == 'o' && board[8]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    
+                                    
+                                if(winningFlag ==1){
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
+                                    $('.inputForm').hide();
+                                }
+                                else if(winningFlag ==2){
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
+                                    $('.inputForm').hide();
+                                }
+                                else if (turns ==9) {
+                                    $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
+                                    $('.inputForm').hide();
+                                } 
                 
                 $('td').hover(function(){
                  
@@ -189,39 +227,38 @@
                             }
                                 var correctCell = tdselected.pop()
                                 $('#'+correctCell).html('<h1 class = "xCell">&#215;</h1>');
-                                board[correctCell[0]][correctCell[1]] = 'x';
+                                $('#'+correctCell).attr('class','aqua');
+                                board[correctCell[0]] = 'x';
                                 
                                 for(var i =0; i<3;i++){
-                                    if(board[i][0] == 'x' && board[i][1] == 'x' && board[i][2]=='x'){
+                                    if(board[i] == 'x' && board[i+1] == 'x' && board[i+2]=='x'){
                                         winningFlag = 1;
                                     }
-                                    if(board[0][i] == 'x' && board[1][i] == 'x' && board[2][i]=='x'){
+                                    if(board[i] == 'o' && board[i+1] == 'o' && board[i+2]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    if(board[i] == 'x' && board[i+3] == 'x' && board[i+6]=='x'){
                                         winningFlag = 1;
+                                    }
+                                    if(board[i] == 'o' && board[i+3] == 'o' && board[i+6]=='o'){
+                                        winningFlag = 2;
                                     }
                                     
                                 }
-                                    if(board[0][0] == 'x' && board[1][1] == 'x' && board[2][2]=='x'){
+                                    if(board[2] == 'x' && board[4] == 'x' && board[6]=='x'){
                                         winningFlag = 1;
                                     }
-                                    if(board[2][0] == 'x' && board[1][1] == 'x' && board[0][2]=='x'){
+                                    if(board[2] == 'o' && board[4] == 'o' && board[6]=='o'){
+                                        winningFlag = 2;
+                                    }
+                                    if(board[0] == 'x' && board[4] == 'x' && board[8]=='x'){
                                         winningFlag = 1;
+                                    }
+                                    if(board[0] == 'o' && board[4] == 'o' && board[8]=='o'){
+                                        winningFlag = 2;
                                     }
                                     
-                                    for(var i =0; i<3;i++){
-                                        if(board[i][0] == 'o' && board[i][1] == 'o' && board[i][2]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        if(board[0][i] == 'o' && board[1][i] == 'o' && board[2][i]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        
-                                        }
-                                        if(board[0][0] == 'o' && board[1][1] == 'o' && board[2][2]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        if(board[2][0] == 'o' && board[1][1] == 'o' && board[0][2]=='o'){
-                                            winningFlag = 2;
-                                        }
+                                    
                                 if(winningFlag ==1){
                                     $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
                                     $('.inputForm').hide();
@@ -234,11 +271,12 @@
                                     $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
-                                else{
-                                    $('#boardform').attr('value',updatedTable)
-                                    $('#scoreboard').attr('value',board)
-                                    $('form').submit()
-                                }
+                                
+                                var updatedTable = $('table').html();
+                                $('#boardform').attr('value',updatedTable)
+                                $('#scoreboard').attr('value',board)
+                                $('form').submit()
+                                
                             }
                             });
         
@@ -286,7 +324,7 @@
                            
                                <h2></h2>
                                <input type = "text" id = 'inputanswer'>
-                               <form action='/gameupdate'>
+                               <form action='/gameupdate1'>
                                    <input type="hidden" name ="board" id ='boardform'>
                                    <input type="hidden" name ="scoreboard" id ='scoreboard'>
                                  
