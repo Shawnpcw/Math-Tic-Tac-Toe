@@ -1,6 +1,6 @@
 <html>
     <head>
-       <title>Login</title>
+       <title>Multiplayer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
         body{
@@ -59,14 +59,14 @@
 
         #winningStatement{
             position: absolute;
-    margin-left: 0%;
+    margin-left: 100px;
     margin-top: 0%;
     padding-left: 0%;
-    padding-top: 204px;
+    padding-top: 175px;
     width: 475px;
+    font-size: 575%;
 
     font-size: 575%;
-            
         }
         table { 
             border-spacing: 3px;
@@ -148,49 +148,11 @@
                [0,0,0],
                [0,0,0]];
             $('#inputanswer').hide(); 
-            function equation(difficulty){
-                var num1 = Math.floor(Math.random()*10)+1;
-                var num2 = 11;
-                while(num2>num1){
-                 num2 = Math.floor(Math.random()*10)+1;
-                }
-                var signs = ['+','-','x','/']
-                var sign = (Math.floor(Math.random()*difficulty))
-                var eq = num1 +' '+ signs[sign]+' '+ num2;
-                var ans = 0;
-                if (sign ==1){
-                    ans = num1 - num2;
-                }
-                else if (sign == 0){
-                    ans = num1 +num2;
-                }
-                else if (sign == 2){
-                    ans = num1 * num2;
-                }
-                else if (sign == 3){
-                    ans = Math.round((num1/num2)*100)/100;
-                }
-                var square = {
-                    'equation': eq,
-                    'answer' : ans,
-                }
-
-                return square;
-            }
-
-            var str = ""; 
-            for(var i = 0;i<3;i++){
-                str +='<tr>'
-                for(var j = 0; j<3;j++){
-                    var e = equation(3)
-                    str += '<td class = '+e['answer']+' id = '+i+''+j+'>'+e['equation']+'</td>'
-                }
-            str+='</tr>'
-            }
+            
             var turns = 0;
             var tdselected = [];
             var backgroundColor = "";
-            $('table').html(str);
+            $('table').html("{{board | safe}}");
             
                 
                 $('td').hover(function(){
@@ -299,15 +261,15 @@
                                     }
                                     
                                 if(winningFlag ==1){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if(winningFlag ==2){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if (turns ==9) {
-                                    $('table').prepend('<h1 class = "draw">Draw, No Winner</h1>')
+                                    $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
                             }

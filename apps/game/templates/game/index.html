@@ -6,7 +6,7 @@
         body{
             margin: auto;
             padding: auto;
-            background: linear-gradient(320deg,#2C3E50, #4CA1AF 82%);
+            background: linear-gradient(320deg, #348F50, #56B4D3 82%);
             width: 100%;
             height: 100%;
             margin: 3%;
@@ -16,6 +16,7 @@
         width: 700px;
         height:700px;
         margin-left:25%;
+
         border-radius: 15px;
         background: linear-gradient(-180deg, white,ghostwhite);
         opacity: .9;   
@@ -59,12 +60,11 @@
 
         #winningStatement{
             position: absolute;
-    margin-left: 0%;
+    margin-left: 100px;
     margin-top: 0%;
     padding-left: 0%;
-    padding-top: 204px;
+    padding-top: 175px;
     width: 475px;
-
     font-size: 575%;
             
         }
@@ -100,6 +100,7 @@
            
             margin:12%
         }
+
 
             /* td:first-of-type {
             border-right: 3.5px solid black;
@@ -216,27 +217,33 @@
                 }
                 }
                 );
-            
+                var answer = 0;
                 $('td').click(function(){
                     if( winningFlag ==0){  
                         if($(this).children().attr('class')==undefined){
                         $('#'+tdselected.pop()).css('background-color','whitesmoke');
                         $('h2').empty();
                         $('input').val('');
-
+                       
                         tdselected.push($(this).attr('id'));
 
                         $('#inputanswer').show();
 
                         $('h2').append($(this).text());
                         $(this).css('background-color','aqua')
-                        var answer = $(this).attr('class');
+                        answer  = $(this).attr('class');
                         
                             
-                        $('#inputanswer').keyup(function(){
+                        
+                            
+                    }
+                    }
+                    
+                });
+                $('#inputanswer').keyup(function(){
                             
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
-            
+                            
                             if($('#inputanswer').val() == answer){
                                 console.log("TURNS START", turns)
                                 console.log("TD SELECTED", tdselected[0])
@@ -297,28 +304,25 @@
                                             winningFlag = 2;
                                         }
                                 if(winningFlag ==1){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if(winningFlag ==2){
-                                    $('table').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
+                                    $('.sub').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if (turns ==9) {
-                                    $('table').prepend('<h1 class = "draw">Draw, No Winner</h1>')
+                                    $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
+                                answer= 0;
                             }
                             });
-                            
-                    }
-                    }
-                    
-                });
         
      
         })
         </script>
+
 
     </head>
     <body>
@@ -326,6 +330,7 @@
             <div id = 'container'>
                 
                 <div class ='sub'>
+
                     
                      <table>
                          
@@ -339,7 +344,11 @@
                     
                 </div>
                 
-              </div>
+          
+                </div>
+
+
+    
               
           </body>
       </html>

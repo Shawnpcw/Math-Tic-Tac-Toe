@@ -1,41 +1,41 @@
 <html>
     <head>
-       <title>Multiplayer</title>
+       <title>Computer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
         body{
             margin: auto;
             padding: auto;
-            background: linear-gradient(320deg,#2C3E50, #4CA1AF 82%);
+            background: linear-gradient(320deg,#240b36, #c31432 82%);
             width: 100%;
             height: 100%;
             margin: 3%;
 
         }
        #container{
-            width: 700px;
-            height:700px;
-            margin-left:25%;
-            border-radius: 15px;
-            background: linear-gradient(-180deg, white,ghostwhite);
-            opacity: .9;   
-            box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+        width: 700px;
+        height:700px;
+        margin-left:25%;
+        border-radius: 15px;
+        background: linear-gradient(-180deg, white,ghostwhite);
+        opacity: .9;   
+        box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
 
        }
        .draw{
-            position: absolute;
-            margin-left: 0%;
-            margin-top: 0%;
-            padding-left: 4%;
-            padding-top: 8%;
-            width: 32%;
-            height: 41%;
-            font-size: 575%;
-            text-shadow: 0 0 11px white;
+        position: absolute;
+    margin-left: 0%;
+    margin-top: 0%;
+    padding-left: 4%;
+    padding-top: 8%;
+    width: 32%;
+    height: 41%;
+    font-size: 575%;
+    text-shadow: 0 0 11px white;
        }
        h2{
-        text-align: center;
-        font-size: 235%;
+           text-align: center;
+           font-size: 235%;
        }
         table{
         margin: auto;
@@ -59,14 +59,14 @@
 
         #winningStatement{
             position: absolute;
-            margin-left: 100px;
-            margin-top: 0%;
-            padding-left: 0%;
-            padding-top: 175px;
-            width: 475px;
-            font-size: 575%;
+    margin-left: 100px;
+    margin-top: 0%;
+    padding-left: 0%;
+    padding-top: 175px;
+    width: 475px;
+    font-size: 575%;
 
-            font-size: 575%;
+    font-size: 575%;
             
         }
         table { 
@@ -89,7 +89,7 @@
         .xCell{
             margin:0px;
             padding:0px;
-            font-size:45px;
+            font-size:84px;
         }
         .sub{
             
@@ -135,8 +135,8 @@
             box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
             background-color:whitesmoke;
             margin:1px;
-            min-width: 100px;
-            min-height: 100px;
+            width: 100px;
+            height: 100px;
             border-radius:18px;
             }
 
@@ -144,18 +144,54 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        <script type="text/javascript">
            $(document).ready(function(){
-            
-           
             var winningFlag = 0;
                var board =[[0,0,0],
                [0,0,0],
                [0,0,0]];
             $('#inputanswer').hide(); 
-           
+            function equation(difficulty){
+                var num1 = Math.floor(Math.random()*10)+1;
+                var num2 = 11;
+                while(num2>num1){
+                 num2 = Math.floor(Math.random()*10)+1;
+                }
+                var signs = ['+','-','x','/']
+                var sign = (Math.floor(Math.random()*difficulty))
+                var eq = num1 +' '+ signs[sign]+' '+ num2;
+                var ans = 0;
+                if (sign ==1){
+                    ans = num1 - num2;
+                }
+                else if (sign == 0){
+                    ans = num1 +num2;
+                }
+                else if (sign == 2){
+                    ans = num1 * num2;
+                }
+                else if (sign == 3){
+                    ans = Math.round((num1/num2)*100)/100;
+                }
+                var square = {
+                    'equation': eq,
+                    'answer' : ans,
+                }
+
+                return square;
+            }
+
+            var str = ""; 
+            for(var i = 0;i<3;i++){
+                str +='<tr>'
+                for(var j = 0; j<3;j++){
+                    var e = equation(3)
+                    str += '<td class = '+e['answer']+' id = '+i+''+j+'>'+e['equation']+'</td>'
+                }
+            str+='</tr>'
+            }
             var turns = 0;
             var tdselected = [];
             var backgroundColor = "";
-            $('table').html("{{board | safe}}");
+            $('table').html(str);
             
                 
                 $('td').hover(function(){
@@ -166,7 +202,7 @@
                     if($(this).children().attr('class')==undefined){
                       
                         if( backgroundColor == 'rgb(245, 245, 245)'){
-                        $(this).css('background-color','aqua')
+                        $(this).css('background-color','red')
                         }
                     }
                     }
@@ -194,7 +230,7 @@
                         $('#inputanswer').show();
 
                         $('h2').append($(this).text());
-                        $(this).css('background-color','aqua')
+                        $(this).css('background-color','red')
                         answer = $(this).attr('class');
                             
                     }
@@ -213,9 +249,43 @@
                                     turns++;
                             }
                                 var correctCell = tdselected.pop()
-                                $('#'+correctCell).html('<h1 class = "xCell">&#215;</h1>');
-                                board[correctCell[0]][correctCell[1]] = 'x';
                                 
+                                $('#'+correctCell).html('<h1 class = "oCell"> &#x25EF;</h1>');
+                                board[correctCell[0]][correctCell[1]] = 'o';
+                                for(var i =0; i<3;i++){
+                                        if(board[i][0] == 'o' && board[i][1] == 'o' && board[i][2]=='o'){
+                                            winningFlag = 2;
+                                        }
+                                        if(board[0][i] == 'o' && board[1][i] == 'o' && board[2][i]=='o'){
+                                            winningFlag = 2;
+                                        }
+                                        
+                                        }
+                                        if(board[0][0] == 'o' && board[1][1] == 'o' && board[2][2]=='o'){
+                                            winningFlag = 2;
+                                        }
+                                        if(board[2][0] == 'o' && board[1][1] == 'o' && board[0][2]=='o'){
+                                            winningFlag = 2;
+                                        }
+                                
+                                    
+                                if(winningFlag==0 && turns <9){
+                                    var x =0;
+                                    while(x == 0){
+                                        var rand1 = Math.floor(Math.random()*3);
+                                        var rand2 = Math.floor(Math.random()*3);
+                                        if(board[rand1][rand2] ==0){
+                                            board[rand1][rand2]= 'x';
+                                        
+                                            
+                                            $('#'+rand1+""+rand2).html('<h1 class = "xCell">&#215;</h1>');
+                                            $('#'+rand1+""+rand2).css('background-color','aqua');
+                                            turns ++;
+                                            x = 1;
+                                        }
+                                        
+                                    }
+                                }
                                 for(var i =0; i<3;i++){
                                     if(board[i][0] == 'x' && board[i][1] == 'x' && board[i][2]=='x'){
                                         winningFlag = 1;
@@ -232,52 +302,20 @@
                                         winningFlag = 1;
                                     }
                                     
-                                if(winningFlag==0 && turns <9){
-                                    var x =0;
-                                    while(x == 0){
-                                        var rand1 = Math.floor(Math.random()*3);
-                                        var rand2 = Math.floor(Math.random()*3);
-                                        if(board[rand1][rand2] ==0){
-                                            board[rand1][rand2]= 'o';
-                                        
-                                            
-                                            $('#'+rand1+""+rand2).html('<h1 class = "oCell"> &#x25EF;</h1>');
-                                            $('#'+rand1+""+rand2).css('background-color','tomato');
-                                            turns ++;
-                                            x = 1;
-                                        }
-                                        
-                                    }
-                                }
-                                    for(var i =0; i<3;i++){
-                                        if(board[i][0] == 'o' && board[i][1] == 'o' && board[i][2]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        if(board[0][i] == 'o' && board[1][i] == 'o' && board[2][i]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        
-                                        }
-                                        if(board[0][0] == 'o' && board[1][1] == 'o' && board[2][2]=='o'){
-                                            winningFlag = 2;
-                                        }
-                                        if(board[2][0] == 'o' && board[1][1] == 'o' && board[0][2]=='o'){
-                                            winningFlag = 2;
-                                        }
                                 if(winningFlag ==1){
-                                    $('.sub').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
+                                    $('table').prepend('<h1 id = "winningStatement" class = "xWins">X WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if(winningFlag ==2){
-                                    $('.sub').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
+                                    $('table').prepend('<h1 id = "winningStatement" class = "oWins">O WINS!</h1>')
                                     $('.inputForm').hide();
                                 }
                                 else if (turns ==9) {
-                                    $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
+                                    $('table').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
-                                answer = 0;
                             }
+                            answer = 0;
                             });
         
      
@@ -292,13 +330,13 @@
                 <div class ='sub'>
                     
                      <table>
-                           
+                         
                      </table>  
                      <div class ='inputForm'>
                             
                                 <h2></h2>
                                 <input type = "text" id = 'inputanswer'>
-                            
+        
                     </div>  
                     
                 </div>
