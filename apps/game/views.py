@@ -11,7 +11,6 @@ def computer(request):
 def multiplayer(request, num):
     board = openMatches.objects.get(id = num).board
     request.session['board'] = board
-    print(board)
     return render(request,'game/multiplayer.html',{'board':board})
 
 def player2(request,num):
@@ -21,3 +20,4 @@ def player2(request,num):
     b.save()
     request.session['board'] = board
     return render(request,'game/player2.html',{'board':board})
+

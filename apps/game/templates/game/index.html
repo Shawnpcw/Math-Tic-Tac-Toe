@@ -193,7 +193,6 @@
             var turns = 0;
             var tdselected = [];
             var backgroundColor = "";
-            console.log(str);
             $('table').html(str);
             
                 
@@ -220,27 +219,33 @@
                 }
                 }
                 );
-            
+                var answer = 0;
                 $('td').click(function(){
                     if( winningFlag ==0){  
                         if($(this).children().attr('class')==undefined){
                         $('#'+tdselected.pop()).css('background-color','whitesmoke');
                         $('h2').empty();
                         $('input').val('');
-
+                       
                         tdselected.push($(this).attr('id'));
 
                         $('#inputanswer').show();
 
                         $('h2').append($(this).text());
                         $(this).css('background-color','aqua')
-                        var answer = $(this).attr('class');
+                        answer  = $(this).attr('class');
                         
                             
-                        $('#inputanswer').keyup(function(){
+                        
+                            
+                    }
+                    }
+                    
+                });
+                $('#inputanswer').keyup(function(){
                             
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
-            
+                            
                             if($('#inputanswer').val() == answer){
                                 console.log("TURNS START", turns)
                                 console.log("TD SELECTED", tdselected[0])
@@ -312,13 +317,9 @@
                                     $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
+                                answer= 0;
                             }
                             });
-                            
-                    }
-                    }
-                    
-                });
         
      
         })
