@@ -68,11 +68,13 @@ def add(request):
                 }
         return square
     stri = ""
+    count = 0
     for i in range(0, 3):
         stri +='<tr>'
         for j in range(0, 3):
             e = equation()
-            stri += '<td class = '+str(e['answer'])+' id = '+str(i)+''+str(j)+'>'+str(e['equation'])+'</td>'
+            stri += '<td class = '+str(e['answer'])+' id = '+str(count)+'>'+str(e['equation'])+'</td>'
+            count +=1
         stri+='</tr>'
     
 
