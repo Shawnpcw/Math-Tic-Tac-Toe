@@ -133,14 +133,14 @@
                                     <th>Username</th>
                                     <th>Game Difficulty</th>
                                     <th>User's Winning Percentage</th>
-                                   
+                                   <th>Join</th>
                                 </tr>
                                 {%for game in myGames%}
                                 <tr class = {{game.id}}>
                                     <td class = {{game.id}}>{{game.creator.username}}<a href ="gameplayer1/{{game.id}}"></a></td>
                                     <td class = {{game.id}}>{{game.diffiliculty}}<a href ="gameplayer1/{{game.id}}"></a></td>
-                                   <td class = {{game.id}}> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}<a href ="gameplayer1/{{game.id}}"></a></td>
-                                   
+                                   <td class = {{game.id}}> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}</td>
+                                <td><a href ="gameplayer2/{{game.id}}">Join?</a></td>
                                 </tr>
                                    {%endfor%}
 

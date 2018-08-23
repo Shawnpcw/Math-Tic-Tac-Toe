@@ -1,6 +1,6 @@
 <html>
     <head>
-       <title>Login</title>
+       <title>Computer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
         body{
@@ -59,11 +59,12 @@
 
         #winningStatement{
             position: absolute;
-    margin-left: 0%;
+    margin-left: 100px;
     margin-top: 0%;
     padding-left: 0%;
-    padding-top: 204px;
+    padding-top: 175px;
     width: 475px;
+    font-size: 575%;
 
     font-size: 575%;
             
@@ -216,7 +217,7 @@
                 }
                 }
                 );
-            
+                var answer = 0;
                 $('td').click(function(){
                     if( winningFlag ==0){  
                         if($(this).children().attr('class')==undefined){
@@ -230,10 +231,13 @@
 
                         $('h2').append($(this).text());
                         $(this).css('background-color','red')
-                        var answer = $(this).attr('class');
-                        
+                        answer = $(this).attr('class');
                             
-                        $('#inputanswer').keyup(function(){
+                    }
+                    }
+                    
+                });
+                $('#inputanswer').keyup(function(){
                             
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
             
@@ -311,12 +315,8 @@
                                     $('.inputForm').hide();
                                 }
                             }
+                            answer = 0;
                             });
-                            
-                    }
-                    }
-                    
-                });
         
      
         })

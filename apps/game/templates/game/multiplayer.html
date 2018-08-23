@@ -1,6 +1,6 @@
 <html>
     <head>
-       <title>Login</title>
+       <title>Multiplayer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
         body{
@@ -13,29 +13,29 @@
 
         }
        #container{
-        width: 700px;
-        height:700px;
-        margin-left:25%;
-        border-radius: 15px;
-        background: linear-gradient(-180deg, white,ghostwhite);
-        opacity: .9;   
-        box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+            width: 700px;
+            height:700px;
+            margin-left:25%;
+            border-radius: 15px;
+            background: linear-gradient(-180deg, white,ghostwhite);
+            opacity: .9;   
+            box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
 
        }
        .draw{
-        position: absolute;
-    margin-left: 0%;
-    margin-top: 0%;
-    padding-left: 4%;
-    padding-top: 8%;
-    width: 32%;
-    height: 41%;
-    font-size: 575%;
-    text-shadow: 0 0 11px white;
+            position: absolute;
+            margin-left: 0%;
+            margin-top: 0%;
+            padding-left: 4%;
+            padding-top: 8%;
+            width: 32%;
+            height: 41%;
+            font-size: 575%;
+            text-shadow: 0 0 11px white;
        }
        h2{
-           text-align: center;
-           font-size: 235%;
+        text-align: center;
+        font-size: 235%;
        }
         table{
         margin: auto;
@@ -59,14 +59,14 @@
 
         #winningStatement{
             position: absolute;
-    margin-left: 100px;
-    margin-top: 0%;
-    padding-left: 0%;
-    padding-top: 175px;
-    width: 475px;
-    font-size: 575%;
+            margin-left: 100px;
+            margin-top: 0%;
+            padding-left: 0%;
+            padding-top: 175px;
+            width: 475px;
+            font-size: 575%;
 
-    font-size: 575%;
+            font-size: 575%;
             
         }
         table { 
@@ -181,7 +181,7 @@
                 }
                 }
                 );
-            
+                var answer = 0;
                 $('td').click(function(){
                     if( winningFlag ==0){  
                         if($(this).children().attr('class')==undefined){
@@ -195,10 +195,13 @@
 
                         $('h2').append($(this).text());
                         $(this).css('background-color','aqua')
-                        var answer = $(this).attr('class');
-                        
+                        answer = $(this).attr('class');
                             
-                        $('#inputanswer').keyup(function(){
+                    }
+                    }
+                    
+                });
+                $('#inputanswer').keyup(function(){
                             
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
             
@@ -273,13 +276,9 @@
                                     $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
+                                answer = 0;
                             }
                             });
-                            
-                    }
-                    }
-                    
-                });
         
      
         })
