@@ -162,6 +162,7 @@
                                     {%if otherUser == 1%}
                                     <th>Start Game!</th>
                                     {%endif%}
+                                    <th></th>
                                 </tr>
                                 {%for game in myGames%}
                                 <tbody>
@@ -171,7 +172,9 @@
                                         <td class = {{game.id}}> {{game.creator.gamesWon}}/{{game.creator.gamesPlayed}}<a href ="gameplayer1/{{game.id}}"></a></td>
                                         {%if otherUser == 1%}
                                         <td><a href="{% url 'game:multiplayer' num=game.id  %}">Join!</a></td>
+
                                         {%endif%}
+                                        <td><a href="{% url 'home:delete' num=game.id  %}">Delete</a></td>
                                     </tr>
                                 </tbody>
                                     {%endfor%}

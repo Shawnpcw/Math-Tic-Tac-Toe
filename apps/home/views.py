@@ -79,6 +79,7 @@ def add(request):
     if openMatches.objects.filter(creator = request.session['user_id']).exists():
         b=openMatches.objects.get(creator = request.session['user_id'])
         b.difficulty = request.POST['Difficulty']
+        b.board = stri
         b.save()
     else:
         i = openMatches.objects.create(board = stri, difficulty = request.POST['Difficulty'], creator = User.objects.get(id= request.session['user_id']), attendee = User.objects.get(id=1))
@@ -89,4 +90,8 @@ def logout(request):
     request.session.clear()
 
     return redirect('login_reg:index')
+def delete(request, num):
+    b = openMatches.objects.get(id = num)
+    b.delete()
+    return redirect('home:matchRoom')
 
