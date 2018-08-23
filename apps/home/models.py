@@ -7,5 +7,6 @@ class openMatches(models.Model):
     attendee = models.ForeignKey(User, related_name = "attendee_game_id", on_delete=models.CASCADE)
     difficulty = models.IntegerField(default = 1)
     board = models.CharField(max_length = 2000, default ="")
+    scoreboard = models.CharField(max_length = 2000, default = "0,0,0,0,0,0,0,0,0")
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
