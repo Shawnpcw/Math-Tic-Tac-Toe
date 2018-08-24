@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
        <title>Multiplayer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
@@ -18,7 +18,6 @@
 
         }
         #container{
-            margin-top:100px;
             width: 700px;
             height:700px;
             margin-left:25%;
@@ -27,12 +26,6 @@
             opacity: .9;   
             box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
 
-        }
-        .red{
-            background-color:red;
-        }
-        .aqua{
-            background-color:aqua;
         }
         .draw{
             position: absolute;
@@ -127,6 +120,59 @@
 
        </style>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+           
+        setInterval( function(){
+            // location.reload();
+            var currentVal =$('#reloaditem').attr('value');
+            if (currentVal ==2){
+                location.reload();
+            }
+            $.ajax({
+                        url:'{% url "game:reloadDiv" %}',
+                        method: 'get',
+                        
+                        success: function(serverResponse) {
+                            $("#reload").html(serverResponse)
+                        }
+                })
+            var reload =$('#reloaditem').attr('value');
+            console.log("hello")
+            var reload = 0;
+            if (reload ==2){
+                console.log('$'*60);
+                
+                
+                reload =$('#reloaditem').attr('value')
+                if (reload ==1){
+                    $(document).reload()
+                    
+                    console.log('$'*60);
+
+                }
+            }
+            if (reload ==1){
+                console.log('^'*60);
+                $.ajax({
+                        url:'{% url "game:reloadDiv" %}',
+                        method: 'get',
+                        
+                        success: function(serverResponse) {
+                            $("#reload").html(serverResponse)
+                        }
+                })
+                
+                reload =$('#reloaditem').attr('value')
+                if (reload ==2){
+                    $(document).reload()
+                    $('form2').submit()
+                    console.log('^'*60);
+                }
+            }
+            
+            
+        }, 1000);
+        </script>
        <script type="text/javascript">
            $(document).ready(function(){
             
@@ -229,12 +275,20 @@
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
             
                             if($('#inputanswer').val() == answer){
+                                $.ajax({
+                                    url:'{% url "game:incermentTurn" %}',
+                                    method: 'get',
+                                    success: function(serverResponse) {
+                                    $("#reload").html(serverResponse)
+                                }
+                                })
+                                
                                 console.log("TURNS START", turns)
                                 console.log("TD SELECTED", tdselected[0])
                                 if(tdselected[0]!=undefined){
                                     
                                     turns++;
-                            }
+                                }
                                 var correctCell = tdselected.pop()
                                 $('#'+correctCell).html('<h1 class = "xCell">&#215;</h1>');
                                 $('#'+correctCell).attr('class','aqua');
@@ -289,8 +343,11 @@
                                 $('#winner').attr('value',winningFlag)
                             }
                             });
-        
-     
+                            
+                           
+                            // Auto refreshing div to show whos turn it is currently
+                
+                
         })
         </script>
 
@@ -340,7 +397,7 @@
                            
                                <h2></h2>
                                <input type = "text" id = 'inputanswer'>
-                               <form action='/gameupdate1'>
+                               <form  action='/gameupdate1'>
                                    <input type="hidden" name ="board" id ='boardform'>
                                    <input type="hidden" name ="scoreboard" id ='scoreboard'>
                                    <input type = "hidden" name ="winner" id = "winner">
@@ -350,7 +407,9 @@
                </div>
                
             
-            
+            <div id="reload">
+                    
+            </div>
              
      
          </body>
