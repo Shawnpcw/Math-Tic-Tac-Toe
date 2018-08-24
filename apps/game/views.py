@@ -2,10 +2,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from apps.home.models import *
 
-def index(request):
-    return render(request,'game/index.html')
+def index(request,num):
+    diff= int(num)
+    return render(request,'game/index.html',{'difficulty':diff})
 
-def computer(request):
+def computer(request,num):
     return render(request,'game/computer.html')
     
 def multiplayer(request, num):
@@ -37,7 +38,7 @@ def player2(request,num):
 def update(request):
 
     updateBoard = openMatches.objects.get(id = request.session['gameId'])
-  
+
     formatedBoard = request.GET['board']
 
     remove = formatedBoard.replace('"','')
@@ -51,7 +52,7 @@ def update(request):
 def update1(request):
 
     updateBoard = openMatches.objects.get(id = request.session['gameId'])
-  
+
     formatedBoard = request.GET['board']
 
     remove = formatedBoard.replace('"','')
@@ -59,7 +60,7 @@ def update1(request):
     updateBoard.scoreboard = request.GET['scoreboard']
     print("GET REQUEST", request.GET['scoreboard'])
     updateBoard.save()
-   
+    
     return redirect('/gameplayer1/'+request.session['gameId'])
 
 def reload(request):

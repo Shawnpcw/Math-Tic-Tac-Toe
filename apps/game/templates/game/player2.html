@@ -5,6 +5,9 @@
        <title>Multiplayer</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <style>
+           .dropdown:hover .dropdown-menu {
+        display: block;
+        } 
         body{
             margin: auto;
             padding: auto;
@@ -340,6 +343,7 @@
                             
                                 $('#boardform').attr('value',updatedTable)
                                 $('#scoreboard').attr('value',board)
+                                $('#winner').attr('value',winningFlag)
                                 $('form').submit()
                                 
                             }
@@ -363,12 +367,31 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create Online Match
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="home/createMatch/1">Easy</a>
+                            <a class="dropdown-item" href="home/createMatch/2">Medium</a>
+                            <a class="dropdown-item" href="home/createMatch/3">Hard</a>
+                            <a class="dropdown-item" href="home/createMatch/4">Advanced</a>
+                            </div>
+                        </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:matchRoom' %}">Online Match</a>
+                        <a class="nav-link" href="{% url 'home:matchRoom' %}">Open Online Match</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{% url 'game:index' %}">Computer Match</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Computer Match
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/gamecomputer/1">Easy</a>
+                            <a class="dropdown-item" href="/gamecomputer/2">Medium</a>
+                            <a class="dropdown-item" href="/gamecomputer/3">Hard</a>
+                            <a class="dropdown-item" href="/gamecomputer/4">Advanced</a>
+                            </div>
+                        </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home:stats' %}">Stats</a>
                     </li>
@@ -390,7 +413,8 @@
                                 <form action='/gameupdate'>
                                     <input type="hidden" name ="board" id ='boardform'>
                                     <input type="hidden" name ="scoreboard" id ='scoreboard'>
-                                    </form>
+                                    <input type = "hidden" name ="winner" id = "winner">    
+                                </form>
                     </div>  
                     
                 </div>
