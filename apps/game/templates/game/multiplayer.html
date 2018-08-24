@@ -283,7 +283,7 @@
                                 $('#boardform').attr('value',updatedTable)
                                 $('#scoreboard').attr('value',board)
                                 $('form').submit()
-                                
+                                $('#winner').attr('value',winningFlag)
                             }
                             });
         
@@ -332,7 +332,7 @@
                                <form action='/gameupdate1'>
                                    <input type="hidden" name ="board" id ='boardform'>
                                    <input type="hidden" name ="scoreboard" id ='scoreboard'>
-                                 
+                                   <input type = "hidden" name ="winner" id = "winner">
                                    </form>
                    </div>  
                    
