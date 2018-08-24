@@ -63,6 +63,24 @@ def update1(request):
     return redirect('/gameplayer1/'+request.session['gameId'])
 
 def reload(request):
-    
+    if 'turn' not in request.session:
+        request.session['turn']= 0
+    counter = 0
     currentTurn = openMatches.objects.get(id = request.session['match_id']).playersTurn
+    print('current turn =',currentTurn)
+    print('request.session["turn"] =',request.session['turn'])            
+    print(currentTurn)
     return render(request, 'game/reload.html',{'currentTurn':currentTurn})
+
+def incermentTurn(request):
+    b =openMatches.objects.get(id = request.session['match_id'])
+    print('i wnet hereere')
+    if b.playersTurn == 1:
+        b.playersTurn = 2
+        print('8'*60, b.playersTurn)
+    elif b.playersTurn ==2:
+        b.playersTurn =1
+        print('8'*60, b.playersTurn)
+    b.save()
+    print(b.playersTurn)
+    return render(request, 'game/reload.html',{'currentTurn':b.playersTurn})
