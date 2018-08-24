@@ -145,6 +145,25 @@
 
        </style>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script>
+            setInterval( function(){
+                $.ajax({
+                        url:'{% url "game:reloadDiv" %}',
+                        method: 'get',
+                        
+                        success: function(serverResponse) {
+                            $("#reload").html(serverResponse)
+                        }
+                })
+            }
+            
+               
+               , 3000);
+            var reload =$('#reloaditem').attr('value')
+            if (reload==1){
+               $(document).reload()
+    
+           }</script>
        <script type="text/javascript">
            $(document).ready(function(){
             var winningFlag = 0;

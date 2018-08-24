@@ -9,6 +9,8 @@ def computer(request):
     return render(request,'game/computer.html')
     
 def multiplayer(request, num):
+    request.session['match_id'] = num
+
     b = openMatches.objects.get(id = num)
     board = b.board
     
@@ -19,7 +21,7 @@ def multiplayer(request, num):
     return render(request,'game/multiplayer.html',{'board':board, 'scoreboard': scoreboard,'playersTurn':playersTurn})
 
 def player2(request,num):
-    
+    request.session['match_id'] = num
     board = openMatches.objects.get(id = num).board
     b = openMatches.objects.get(id = num)
     b.attendee = User.objects.get(id = request.session['user_id'])
@@ -60,3 +62,7 @@ def update1(request):
    
     return redirect('/gameplayer1/'+request.session['gameId'])
 
+def reload(request):
+    
+    currentTurn = openMatches.objects.get(id = request.session['match_id']).playersTurn
+    return render(request, 'game/reload.html',{'currentTurn':currentTurn})
