@@ -21,6 +21,7 @@ def stats(request):
     return render(request, 'home/stats.html', {'userinfo':userinfo})
 
 def matchRoom(request):
+
     otherUser = 0
     myGames = openMatches.objects.filter(creator = User.objects.get(id = request.session['user_id']))
     
@@ -81,6 +82,59 @@ def add(request):
     if openMatches.objects.filter(creator = request.session['user_id']).exists():
         b=openMatches.objects.get(creator = request.session['user_id'])
         b.difficulty = request.POST['Difficulty']
+        b.board = stri
+        b.save()
+    else:
+        i = openMatches.objects.create(board = stri, difficulty = request.POST['Difficulty'], creator = User.objects.get(id= request.session['user_id']), attendee = User.objects.get(id=1))
+        
+    return redirect('home:matchRoom')
+
+def addnum(request,num):
+    
+    def equation():
+        signs = ['+','-','x','/']
+        sign = randint(0,int(num)-1)
+        num1 = randint(1,10)
+        num2 = randint(1,10)
+        if(num2>num1):
+            temp = num1
+            num1 = num2
+            num2 = num1
+        if (sign ==3):
+            if(num2 ==0):
+                num2 =1
+            num1 = num2 * randint(1,10)
+        
+        
+
+        eq = str(num1) +' '+str(signs[sign])+' '+ str(num2)
+        if (sign ==1):
+            ans = num1 - num2
+        elif (sign == 0):
+            ans = num1 +num2
+        elif (sign == 2):
+            ans = num1 * num2
+        elif (sign == 3):
+            ans = int(num1/num2)
+        square = {
+                    'equation': eq,
+                    'answer' : ans,
+                }
+        return square
+    stri = ""
+    count = 0
+    for i in range(0, 3):
+        stri +='<tr>'
+        for j in range(0, 3):
+            e = equation()
+            stri += '<td class = '+str(e['answer'])+' id = '+str(count)+'>'+str(e['equation'])+'</td>'
+            count +=1
+        stri+='</tr>'
+    
+
+    if openMatches.objects.filter(creator = request.session['user_id']).exists():
+        b=openMatches.objects.get(creator = request.session['user_id'])
+        b.difficulty = num
         b.board = stri
         b.save()
     else:

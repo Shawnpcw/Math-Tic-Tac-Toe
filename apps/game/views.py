@@ -2,10 +2,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from apps.home.models import *
 
-def index(request):
-    return render(request,'game/index.html')
+def index(request,num):
+    diff= int(num)
+    return render(request,'game/index.html',{'difficulty':diff})
 
-def computer(request):
+def computer(request,num):
     return render(request,'game/computer.html')
     
 def multiplayer(request, num):
