@@ -119,10 +119,11 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
            
-        setInterval( function(){
+        
+            setInterval( function(){
             // location.reload();
             var currentVal =$('#reloaditem').attr('value');
-            if (currentVal ==2){
+            if (currentVal ==1){
                 location.reload();
             }
             $.ajax({
@@ -133,42 +134,12 @@
                             $("#reload").html(serverResponse)
                         }
                 })
-            var reload =$('#reloaditem').attr('value');
-            console.log("hello")
-            var reload = 0;
-            if (reload ==2){
-                console.log('$'*60);
-                
-                
-                reload =$('#reloaditem').attr('value')
-                if (reload ==1){
-                    $(document).reload()
-                    
-                    console.log('$'*60);
-
-                }
-            }
-            if (reload ==1){
-                console.log('^'*60);
-                $.ajax({
-                        url:'{% url "game:reloadDiv" %}',
-                        method: 'get',
-                        
-                        success: function(serverResponse) {
-                            $("#reload").html(serverResponse)
-                        }
-                })
-                
-                reload =$('#reloaditem').attr('value')
-                if (reload ==2){
-                    $(document).reload()
-                    $('form2').submit()
-                    console.log('^'*60);
-                }
-            }
+            
+       
+       }, 1000);
             
             
-        }, 1000);
+        
         </script>
        <script type="text/javascript">
            $(document).ready(function(){
