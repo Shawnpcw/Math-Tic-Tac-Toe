@@ -8,6 +8,12 @@
            .dropdown:hover .dropdown-menu {
         display: block;
         } 
+        .red{
+            background-color: red;
+        }
+        .aqua{
+            background-color: aqua;
+        }
         body{
             margin: auto;
             padding: auto;
@@ -123,23 +129,24 @@
         <script>
            
         
-            setInterval( function(){
-            // location.reload();
-            var currentVal =$('#reloaditem').attr('value');
-            if (currentVal ==1){
-                location.reload();
-            }
-            $.ajax({
-                        url:'{% url "game:reloadDiv" %}',
-                        method: 'get',
+    //         setInterval( function(){
+    //         // location.reload();
+    //         $.ajax({
+    //                     url:'{% url "game:reloadDiv" %}',
+    //                     method: 'get',
                         
-                        success: function(serverResponse) {
-                            $("#reload").html(serverResponse)
-                        }
-                })
+    //                     success: function(serverResponse) {
+    //                         $("#reload").html(serverResponse)
+    //                     }
+    //             })
+    //         var currentVal =$('#reloaditem').attr('value');
+    //         if (currentVal ==2){
+                
+    //             location.reload();
+    //         }
             
        
-       }, 1000);
+    //    }, 5000);
             
             
         
@@ -246,13 +253,13 @@
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
             
                             if($('#inputanswer').val() == answer){
-                                $.ajax({
-                                    url:'{% url "game:incermentTurn" %}',
-                                    method: 'get',
-                                    success: function(serverResponse) {
-                                    $("#reload").html(serverResponse)
-                                }
-                                })
+                                // $.ajax({
+                                //     url:'{% url "game:incermentTurn" %}',
+                                //     method: 'get',
+                                //     success: function(serverResponse) {
+                                //     $("#reload").html(serverResponse)
+                                // }
+                                // })
                                 
                                 console.log("TURNS START", turns)
                                 console.log("TD SELECTED", tdselected[0])
@@ -306,7 +313,7 @@
                                     $('.sub').prepend('<h1 class = "draw">Draw, No Winner</h1>')
                                     $('.inputForm').hide();
                                 }
-                                
+                               
                                 var updatedTable = $('table').html();
                                 $('#boardform').attr('value',updatedTable)
                                 $('#scoreboard').attr('value',board)

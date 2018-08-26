@@ -156,23 +156,24 @@
        </style>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        <script> 
-           setInterval( function(){
-            // location.reload();
-            var currentVal =$('#reloaditem').attr('value');
-            if (currentVal ==1){
-                location.reload();
-            }
-            $.ajax({
-                        url:'{% url "game:reloadDiv" %}',
-                        method: 'get',
+    //        setInterval( function(){
+    //         location.reload();
+    //         $.ajax({
+    //                     url:'{% url "game:reloadDiv" %}',
+    //                     method: 'get',
                         
-                        success: function(serverResponse) {
-                            $("#reload").html(serverResponse)
-                        }
-                })
+    //                     success: function(serverResponse) {
+    //                         $("#reload").html(serverResponse)
+    //                     }
+    //             })
+    //         var currentVal =$('#reloaditem').attr('value');
+    //         if (currentVal ==1){
+                
+    //             location.reload();
+    //         }
             
        
-       }, 1000);
+    //    }, 5000);
         </script>
        <script type="text/javascript">
            $(document).ready(function(){
@@ -274,14 +275,14 @@
                             console.log("ANSER",answer,"INPUT",$('#inputanswer').val() )
             
                             if($('#inputanswer').val() == answer){
-                                $.ajax({
-                                    url:'{% url "game:incermentTurn" %}',
-                                    method: 'get',
-                                    success: function(serverResponse) {
-                                    $("#reload").html(serverResponse)
-                                }
-                                })
-                                
+                             
+                                // $.ajax({
+                                //     url:'{% url "game:incermentTurn" %}',
+                                //     method: 'get',
+                                //     success: function(serverResponse) {
+                                //     $("#reload").html(serverResponse)
+                                // }
+                                // })
                                 
                                 console.log("TURNS START", turns)
                                 console.log("TD SELECTED", tdselected[0])

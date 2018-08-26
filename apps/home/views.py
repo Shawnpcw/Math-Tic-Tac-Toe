@@ -9,7 +9,8 @@ from random import randint
 def index(request):
     username = User.objects.get(id =request.session['user_id']).username
     print(username)
-    
+    if 'match_id' not in request.session:
+        request.session['match_id'] = 0
     return render(request, 'home/home.html', {'username':username})
 def stats(request):
     
@@ -138,7 +139,7 @@ def addnum(request,num):
         b.board = stri
         b.save()
     else:
-        i = openMatches.objects.create(board = stri, difficulty = request.POST['Difficulty'], creator = User.objects.get(id= request.session['user_id']), attendee = User.objects.get(id=1))
+        i = openMatches.objects.create(board = stri, difficulty = num, creator = User.objects.get(id= request.session['user_id']), attendee = User.objects.get(id=1))
         
     return redirect('home:matchRoom')
 
